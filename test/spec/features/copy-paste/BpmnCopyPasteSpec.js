@@ -71,6 +71,17 @@ describe('features/copy-paste', function() {
       }));
 
 
+      it('should copy boundary events without host', inject(function() {
+
+        // when
+        var tree = copy('BoundaryEvent_1');
+
+        // then
+        expect(keys(tree)).to.have.length(1);
+
+      }));
+
+
       it('should NOT override type property of descriptor', inject(function(elementRegistry) {
 
         // given
@@ -277,7 +288,7 @@ describe('features/copy-paste', function() {
 
     describe('rules', function() {
 
-      it('should NOT allow copying boundary event without host', inject(function(elementRegistry) {
+      it('should allow copying boundary event without host', inject(function(elementRegistry) {
 
         var boundaryEvent1 = elementRegistry.get('BoundaryEvent_1'),
             boundaryEvent2 = elementRegistry.get('BoundaryEvent_2');
@@ -285,7 +296,7 @@ describe('features/copy-paste', function() {
         // when
         var tree = copy([ boundaryEvent1, boundaryEvent2 ]);
 
-        expect(keys(tree)).to.have.length(0);
+        expect(keys(tree)).to.have.length(1);
       }));
 
     });
